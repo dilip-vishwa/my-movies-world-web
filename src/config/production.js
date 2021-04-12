@@ -1,3 +1,3 @@
 export default {
-    endpoint: 'http://abc.com' 
+    endpoint: 'hhttps://my-movies-world-api.herokuapp.com/' 
 }

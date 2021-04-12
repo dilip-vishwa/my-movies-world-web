@@ -13,5 +13,5 @@ npm install
 git init
 git add .
 git commit -m "My first commit"
-heroku git:remote -a my-movies-world
+heroku git:remote -a my-movies-world-web
 git push heroku master
