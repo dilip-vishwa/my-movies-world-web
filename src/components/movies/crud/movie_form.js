@@ -109,7 +109,7 @@ export default function MovieForm() {
   const popularity = useFormInput("4");
   const [openAlert, setOpenAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
-  
+
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -140,10 +140,9 @@ export default function MovieForm() {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('auth_token')}` },
       body: JSON.stringify(post_json_data),
     }
-
-    let url =  `${endpoint.endpoint}/movies`
+    let url = `${endpoint.endpoint}/movies`
     fetchOptions['method'] = 'POST'
-    if(formOperation == 'update') {
+    if (formOperation == 'update') {
       url = `${endpoint.endpoint}/movies?movie_id=${movie_id}`
       fetchOptions['method'] = 'PUT'
     }
@@ -152,14 +151,14 @@ export default function MovieForm() {
       .then(
         (result) => {
           setIsLoaded(true);
-          
+
           setAlertMessage(`Successfully ${formOperation}d Movie Data. Reloading Movie List`)
           setOpenAlert(true);
-          setTimeout(function() {
+          setTimeout(function () {
             history.push(`/movies`);
             // window.location.reload(false);
           }, 5000);
-          
+
           // return (
           //     <Movies />
           // )
@@ -177,10 +176,10 @@ export default function MovieForm() {
 
   useEffect(() => {
     console.log("useEffect")
-    if(movie_id) {
+    if (movie_id) {
       setFormOperation("update")
     }
-    if(movie_id == 'create') {
+    if (movie_id == undefined) {
       setFormOperation("create")
     }
     const fetchOptions = {
@@ -204,27 +203,29 @@ export default function MovieForm() {
         }
       )
 
-    fetch(`${endpoint.endpoint}/movies/?movie_id=${movie_id}`, fetchOptions)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          console.log(result)
-          result = result['result']
-          movieName.setValue(result['name'])
-          imdbScore.setValue(result['imdb_score'])
-          popularity.setValue(result['popularity'])
-          setGenreName(result['genre'])
-          director.setValue(result['director'])
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    if (movie_id != undefined) {
+      fetch(`${endpoint.endpoint}/movies/?movie_id=${movie_id}`, fetchOptions)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            console.log(result)
+            result = result['result']
+            movieName.setValue(result['name'])
+            imdbScore.setValue(result['imdb_score'])
+            popularity.setValue(result['popularity'])
+            setGenreName(result['genre'])
+            director.setValue(result['director'])
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    }
   }, [])
 
   return (
@@ -313,7 +314,7 @@ export default function MovieForm() {
           />
         </Grid>
         <Button type="submit" variant="contained" color="secondary" onClick={onClickSubmit}>
-          { formOperation == 'create'? 'Create': 'Update'} Movie
+          {formOperation == 'create' ? 'Create' : 'Update'} Movie
         </Button>
       </Grid>
     </Container>

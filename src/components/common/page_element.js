@@ -174,6 +174,9 @@ function PossibleRoutes() {
                     <Route path="/logout">
                         <Logout />
                     </Route>
+                    <Route path="/movies/create" child={<MovieForm />}>
+                        <MovieForm />
+                    </Route>
                     <Route path="/movies/:movie_id" child={<MovieForm />}>
                         <MovieForm />
                     </Route>
