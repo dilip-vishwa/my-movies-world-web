@@ -1,3 +1,4 @@
-export default {
-    endpoint: 'hhttps://my-movies-world-api.herokuapp.com/' 
-}
+const config = {
+    endpoint: 'https://my-movies-world-api.herokuapp.com' 
+};
+export default config;
