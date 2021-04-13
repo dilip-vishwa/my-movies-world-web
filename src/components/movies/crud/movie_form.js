@@ -20,7 +20,7 @@ import CustomizedSnackbars from '../../common/alerter';
 import Movies from '../../movies/index'
 import { matchPath } from 'react-router'
 import endpoint from '../../../config';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+// import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -142,7 +142,7 @@ export default function MovieForm() {
     }
     let url = `${endpoint.endpoint}/movies`
     fetchOptions['method'] = 'POST'
-    if (formOperation == 'update') {
+    if (formOperation === 'update') {
       url = `${endpoint.endpoint}/movies?movie_id=${movie_id}`
       fetchOptions['method'] = 'PUT'
     }
@@ -178,7 +178,7 @@ export default function MovieForm() {
     if (movie_id) {
       setFormOperation("update")
     }
-    if (movie_id == undefined) {
+    if (movie_id === undefined) {
       setFormOperation("create")
     }
     const fetchOptions = {
@@ -202,7 +202,7 @@ export default function MovieForm() {
         }
       )
 
-    if (movie_id != undefined) {
+    if (movie_id !== undefined) {
       fetch(`${endpoint.endpoint}/movies/?movie_id=${movie_id}`, fetchOptions)
         .then(res => res.json())
         .then(
@@ -320,7 +320,7 @@ export default function MovieForm() {
           />
         </Grid>
         <Button type="submit" variant="contained" color="secondary" onClick={onClickSubmit}>
-          {formOperation == 'create' ? 'Create' : 'Update'} Movie
+          {formOperation === 'create' ? 'Create' : 'Update'} Movie
         </Button>
       </Grid>
     </Container>
