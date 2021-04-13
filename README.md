@@ -10,7 +10,7 @@ Admin User:
 
 - username: admin
 
-- password: 123456
+- password: admin123456@
 
 ## Postman Collection Link
 https://www.getpostman.com/collections/7830001d780292baa83a
