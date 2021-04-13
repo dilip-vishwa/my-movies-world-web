@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  console.log(endpoint.endpoint)
   const useFormInput = initialValue => {
     const [value, setValue] = useState(initialValue);
    
@@ -60,7 +59,6 @@ export default function SignIn() {
 
   function handleFormSubmit(e) {
     e.preventDefault()
-    console.log(e)
     const post_json_data = {
       username: username.value,
       password: password.value
@@ -79,7 +77,6 @@ export default function SignIn() {
             history.push(`/movies`);
             window.location.reload(false);
           }
-          console.log(data)
           localStorage.setItem('auth_token', data.auth_token);
           localStorage.setItem('logged_in', "true");
             // const cookies = new Cookies();

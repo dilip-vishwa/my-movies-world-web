@@ -15,6 +15,11 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ResponsiveDialog } from '../../common/page_element';
 import CustomizedSnackbars from '../../common/alerter';
 import endpoint from '../../../config';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import { Delete, Edit } from '@material-ui/icons';
+
 
 // function MyComponent() {
 //   const theme = useTheme();
@@ -56,6 +61,17 @@ const useStyles = makeStyles((theme) => ({
     link: {
         color: "#FFFFFF",
         textDecoration: "none"
+    },
+    circle: {
+        borderRadius: "50%",
+        width: "34px",
+        height: "34px",
+        padding: "10px",
+        background: "#538b002e",
+        // border: "3px solid #000",
+        color: "#000",
+        textAlign: "center",
+        font: "32px Arial, sans-serif"
     }
 }));
 
@@ -65,7 +81,6 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 function MoviesList() {
     const history = useHistory();
     function onClickFilterGenre(e) {
-        console.log(e)
         history.push(`/movies?genre=${e}`);
     }
 
@@ -76,8 +91,7 @@ function MoviesList() {
     const [isEditMode, setIsEditMode] = useState(false);
     const [openAlert, setOpenAlert] = useState(false)
     const [alertMessage, setAlertMessage] = useState("")
-    let isLoggedIn = localStorage.getItem('logged_in') == "true"? true : false;
-    console.log(localStorage.getItem('logged_in'), isLoggedIn)
+    let isLoggedIn = localStorage.getItem('logged_in') == "true" ? true : false;
     const [loggedIn, setLoggedIn] = useState(isLoggedIn)
 
     // Note: the empty deps array [] means
@@ -97,6 +111,7 @@ function MoviesList() {
                         history.push(`/login`);
                     } else {
                         setIsLoaded(true);
+                        console.log(result['result']);
                         setItems(result['result']);
                     }
                 },
@@ -127,7 +142,6 @@ function MoviesList() {
     }
 
     function deleteMovie(movie_id) {
-        console.log(movie_id)
         // setOpen(true);
         const fetchOptions = {
             method: 'DELETE',
@@ -138,11 +152,9 @@ function MoviesList() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result)
                     if (result['result'] === 'Unauthorized') {
                         history.push(`/login`);
                     } else {
-                        console.log("Deleted")
                         setIsLoaded(true);
                         setAlertMessage(`Successfully deleted Movie Data. Reloading Movie List`)
                         setOpenAlert(true);
@@ -156,7 +168,36 @@ function MoviesList() {
                 // instead of a catch() block so that we don't swallow
                 // exceptions from actual bugs in components.
                 (error) => {
-                    console.log(error)
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+
+    }
+
+    function searchMovie(e) {
+        let movie_name = e.target.value;
+        // setOpen(true);
+        const fetchOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('auth_token')}` },
+            // body: JSON.stringify(post_json_data),
+        }
+        fetch(`${endpoint.endpoint}/movies/?movie_name=${movie_name}&page=1&limit=12`, fetchOptions)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    if (result['result'] === 'Unauthorized') {
+                        history.push(`/login`);
+                    } else {
+                        setIsLoaded(true);
+                        setItems(result['result']);
+                    }
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
                     setIsLoaded(true);
                     setError(error);
                 }
@@ -172,9 +213,14 @@ function MoviesList() {
             {/* Hero unit */}
             <Container className={classes.cardGrid} maxWidth="md">
                 <CustomizedSnackbars open={openAlert} message={alertMessage} />
-                { loggedIn && <Button variant="contained" color="secondary"><Link className={classes.link} href="/movies/create">Add Movies</Link></Button> }
+                <div style={{ position: "relative", margin: "auto", float: "left" }}>
+                    {loggedIn && <Button variant="contained" color="secondary"><Link className={classes.link} href="/movies/create">Add Movies</Link></Button>}
+                </div>
+                <div style={{ position: "relative", margin: "auto", float: "right" }}>
+                    {<TextField id="standard-basic" label="Search Movie" onKeyUp={searchMovie} />}
+                </div>
                 {/* <p>Click on Any Item and filter with it</p> */}
-
+                <div style={{ position: "relative", margin: "auto", textAlign: "center"}}><b>Showing/Found Result: {items.length || "No Movie with current search"}</b></div>
                 <Grid container spacing={4}>
                     {items.map((card) => (
                         <Grid item key={card.movie_id} xs={12} sm={6} md={4}>
@@ -186,29 +232,42 @@ function MoviesList() {
                                 /> */}
                                 <CardContent className={classes.cardContent}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        {card.name} <span style={{ fontSize: "10px", color: "green", fontVariant: "bold", float: "right" }}>{card.imdb_score}</span>
+                                        {card.name}
+                                        <Tooltip title="IMDB Score">
+                                            <span className={classes.circle} style={{ fontSize: "10px", color: "green", fontVariant: "bold", float: "right" }}>{card.imdb_score}</span>
+                                        </Tooltip>
                                     </Typography>
                                     <Typography>
-                                        By {card.director}
+                                        <span style={{ fontSize: "10px" }}>By</span> <span style={{ fontStyle: "italic" }}>{card.director}</span>
+                                        <Tooltip title="Popularity">
+                                            <span className={classes.circle} style={{ fontSize: "10px", color: "red", fontVariant: "bold", float: "right" }}>{card.popularity}</span>
+                                        </Tooltip>
                                     </Typography>
                                     <Typography>
                                         {card.genre.map((tag, i) => [
                                             i > 0 && " ",
                                             // <Tag key={i} tag= />
-                                            <Chip key={i} size="small" label={tag} component="a" href="#chip" clickable onClick={() => onClickFilterGenre(tag)} />
+                                            <Chip key={i} size="small" label={tag} component="a" href="#chip"
+                                            // clickable onClick={() => onClickFilterGenre(tag) }
+                                            />
                                         ])}
                                     </Typography>
                                 </CardContent>
-                                
+
                                 <CardActions>
-                                    { loggedIn && <Link href={"/movies/" + card.movie_id}>Edit</Link> }
-                                    { loggedIn && <ResponsiveDialog button_text="Delete" id={card.movie_id} customFunction={deleteMovie} title={title} message={message} /> }
+                                    {loggedIn && <Button color="primary"><Link href={"/movies/" + card.movie_id}><Edit color="primary" /></Link></Button>}
+                                    {loggedIn && <ResponsiveDialog button_text={<Edit color="primary" />} id={card.movie_id} customFunction={deleteMovie} title={title} message={message} />}
                                 </CardActions>
                             </Card>
                         </Grid>
                     ))}
+                    {items.length != 0 && 
+                    <div style={{ position: "relative", margin: "auto" }}>
+                        {loggedIn && <Button variant="contained" color="primary">fetch More Movies (Not implemented)</Button>}
+                    </div>
+                    }
+
                 </Grid>
-                { loggedIn && <Button variant="contained" color="primary">More Movies</Button> }
             </Container>
         </main>
     )

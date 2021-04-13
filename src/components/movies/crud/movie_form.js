@@ -122,12 +122,10 @@ export default function MovieForm() {
   };
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     setGenreName(event.target.value);
   };
 
   const onClickSubmit = (e) => {
-    console.log("onClickSubmit")
     e.preventDefault()
     let post_json_data = {
       name: movieName.value,
@@ -175,7 +173,6 @@ export default function MovieForm() {
 
 
   useEffect(() => {
-    console.log("useEffect")
     if (movie_id) {
       setFormOperation("update")
     }
@@ -187,7 +184,7 @@ export default function MovieForm() {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('auth_token')}` },
       // body: JSON.stringify(post_json_data),
     }
-    fetch("${endpoint.endpoint}/movies/genre", fetchOptions)
+    fetch(`${endpoint.endpoint}/movies/genre`, fetchOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -209,7 +206,6 @@ export default function MovieForm() {
         .then(
           (result) => {
             setIsLoaded(true);
-            console.log(result)
             result = result['result']
             movieName.setValue(result['name'])
             imdbScore.setValue(result['imdb_score'])

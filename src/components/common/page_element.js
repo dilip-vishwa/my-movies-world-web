@@ -133,7 +133,6 @@ function Footer() {
 
 function check_user_logged_in() {
     let data = localStorage.getItem('logged_in') || "false";
-    // console.log(`State of loggedin from localstorage: ${localStorage.getItem('logged_in')}`)
     return data
 }
 
@@ -141,7 +140,6 @@ function PossibleRoutes() {
     let [logged_in, setloggedIn] = useState("false")
     useEffect(() => {
         let loggin_state = check_user_logged_in()
-        console.log(`State of loggedin from State: ${loggin_state}`)
         setloggedIn(loggin_state)
     }, []);
     return (

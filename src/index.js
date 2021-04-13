@@ -5,9 +5,9 @@ import {PossibleRoutes} from './components/common/page_element'
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <PossibleRoutes />
-  </React.StrictMode>,
+  // <React.StrictMode>
+    <PossibleRoutes />,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
