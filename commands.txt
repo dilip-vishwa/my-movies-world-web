@@ -17,3 +17,8 @@ heroku git:remote -a my-movies-world-web
 git push heroku master
 
 heroku config:set NODE_ENV=production
+
+
+
+git remote add origin git@github.com:dilip-vishwa/my-movies-world-web.git
+git push -u origin main

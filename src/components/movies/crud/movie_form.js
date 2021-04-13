@@ -20,6 +20,8 @@ import CustomizedSnackbars from '../../common/alerter';
 import Movies from '../../movies/index'
 import { matchPath } from 'react-router'
 import endpoint from '../../../config';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -102,11 +104,11 @@ export default function MovieForm() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [genreName, setGenreName] = useState(["Adventure"]);
-  const movieName = useFormInput("My Movie");
-  const director = useFormInput("My Director");
-  const imdbScore = useFormInput("5");
-  const popularity = useFormInput("4");
+  const [genreName, setGenreName] = useState([]);
+  const movieName = useFormInput("");
+  const director = useFormInput("");
+  const imdbScore = useFormInput("");
+  const popularity = useFormInput("");
   const [openAlert, setOpenAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState("")
 
@@ -246,6 +248,12 @@ export default function MovieForm() {
           />
         </Grid>
         <Grid item xs={6} sm={6}>
+          {/* <ValidatorForm
+            ref="form"
+            // onSubmit={this.handleSubmit}
+            // onChange
+            onError={errors => console.log(errors)}
+          > */}
           <TextField
             required
             id="popularity"
@@ -255,7 +263,9 @@ export default function MovieForm() {
             // autoComplete="popularity"
             value={popularity.value}
             onChange={popularity.onChange}
+            // validators={['minNumber:0', 'maxNumber:100', 'matchRegexp:^[0-9]$']}
           />
+          {/* </ValidatorForm> */}
         </Grid>
         <Grid item xs={6} sm={6}>
           <TextField
@@ -271,7 +281,7 @@ export default function MovieForm() {
         </Grid>
         <Grid item xs={6} sm={6}>
           {/* <FormControl className={classes.formControl}> */}
-          <InputLabel id="genre">Genre</InputLabel>
+          <InputLabel id="genre">Genre*</InputLabel>
           <Select
             fullWidth
             labelId="genre"

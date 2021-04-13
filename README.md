@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# My Movies World (Demo App)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Demo application is for test purpose under MIT licence.
 
-## Available Scripts
+## Demo
+Application demo on:
+https://my-movies-world.herokuapp.com/
 
-In the project directory, you can run:
+Admin User:
 
-### `npm start`
+- username: admin
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- password: 123456
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Postman Collection Link
+https://www.getpostman.com/collections/7830001d780292baa83a
 
-### `npm test`
+In Postman Environment, add *url* as `https://my-movies-world-api.herokuapp.com` 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## More Info
 
-### `npm run build`
+This application was created for giving a coding and application development test in interview round.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Documentation:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+##### Admin User:
+ 
+can see list of movies, add new, update existing and can delete any movie.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### Normal User:
+No username and password. Only list of movies and search is accessible.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This application is made using React UI and Sanic Async Python Framework.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### API Code
 
-## Learn More
+https://github.com/dilip-vishwa/my-movies-world-api
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Run Application 
+`npm run start`

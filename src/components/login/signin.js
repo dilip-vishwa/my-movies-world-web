@@ -52,8 +52,8 @@ export default function SignIn() {
 
 
   const classes = useStyles();
-  let username = useFormInput("admin");
-  let password = useFormInput("123456");
+  let username = useFormInput("");
+  let password = useFormInput("");
   const history = useHistory();
   // function 
 

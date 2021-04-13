@@ -213,10 +213,10 @@ function MoviesList() {
             {/* Hero unit */}
             <Container className={classes.cardGrid} maxWidth="md">
                 <CustomizedSnackbars open={openAlert} message={alertMessage} />
-                <div style={{ position: "relative", margin: "auto", float: "left" }}>
+                <div style={{ position: "relative", margin: "auto", float: "left", zIndex: 2000 }}>
                     {loggedIn && <Button variant="contained" color="secondary"><Link className={classes.link} href="/movies/create">Add Movies</Link></Button>}
                 </div>
-                <div style={{ position: "relative", margin: "auto", float: "right" }}>
+                <div style={{ position: "relative", margin: "auto", float: "right", zIndex: 2000 }}>
                     {<TextField id="standard-basic" label="Search Movie" onKeyUp={searchMovie} />}
                 </div>
                 {/* <p>Click on Any Item and filter with it</p> */}
@@ -255,8 +255,8 @@ function MoviesList() {
                                 </CardContent>
 
                                 <CardActions>
-                                    {loggedIn && <Button color="primary"><Link href={"/movies/" + card.movie_id}><Edit color="primary" /></Link></Button>}
-                                    {loggedIn && <ResponsiveDialog button_text={<Edit color="primary" />} id={card.movie_id} customFunction={deleteMovie} title={title} message={message} />}
+                                    {loggedIn && <Button color="primary"><Link href={"/movies/" + card.movie_id}><Edit color="primary"  fontSize="small"/></Link></Button>}
+                                    {loggedIn && <ResponsiveDialog button_text={<Delete color="error" fontSize="small"/>} id={card.movie_id} customFunction={deleteMovie} title={title} message={message} />}
                                 </CardActions>
                             </Card>
                         </Grid>
