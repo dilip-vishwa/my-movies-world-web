@@ -107,7 +107,7 @@ function MoviesList() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    if (result['result'] === 'Unauthorized') {
+                    if (result['result'] == 'Unauthorized') {
                         history.push(`/login`);
                     } else {
                         setIsLoaded(true);
@@ -152,7 +152,7 @@ function MoviesList() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    if (result['result'] === 'Unauthorized') {
+                    if (result['result'] == 'Unauthorized') {
                         history.push(`/login`);
                     } else {
                         setIsLoaded(true);
@@ -187,7 +187,7 @@ function MoviesList() {
             .then(res => res.json())
             .then(
                 (result) => {
-                    if (result['result'] === 'Unauthorized') {
+                    if (result['result'] == 'Unauthorized') {
                         history.push(`/login`);
                     } else {
                         setIsLoaded(true);
@@ -261,7 +261,7 @@ function MoviesList() {
                             </Card>
                         </Grid>
                     ))}
-                    {items.length !== 0 && 
+                    {items.length != 0 && 
                     <div style={{ position: "relative", margin: "auto" }}>
                         {loggedIn && <Button variant="contained" color="primary">fetch More Movies (Not implemented)</Button>}
                     </div>
