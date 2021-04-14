@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/my-movies-world-web/static/css/main.4336899f.chunk.css",
+    "main.js": "/my-movies-world-web/static/js/main.b96c7252.chunk.js",
+    "main.js.map": "/my-movies-world-web/static/js/main.b96c7252.chunk.js.map",
+    "runtime-main.js": "/my-movies-world-web/static/js/runtime-main.782d54f4.js",
+    "runtime-main.js.map": "/my-movies-world-web/static/js/runtime-main.782d54f4.js.map",
+    "static/js/2.9e79d924.chunk.js": "/my-movies-world-web/static/js/2.9e79d924.chunk.js",
+    "static/js/2.9e79d924.chunk.js.map": "/my-movies-world-web/static/js/2.9e79d924.chunk.js.map",
+    "index.html": "/my-movies-world-web/index.html",
+    "static/css/main.4336899f.chunk.css.map": "/my-movies-world-web/static/css/main.4336899f.chunk.css.map",
+    "static/js/2.9e79d924.chunk.js.LICENSE.txt": "/my-movies-world-web/static/js/2.9e79d924.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.782d54f4.js",
+    "static/js/2.9e79d924.chunk.js",
+    "static/css/main.4336899f.chunk.css",
+    "static/js/main.b96c7252.chunk.js"
+  ]
+}
