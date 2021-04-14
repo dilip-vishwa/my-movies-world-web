@@ -1,7 +1,10 @@
 {
   "name": "moviesdb",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
+  "engines": {
+    "node": "12.18.3"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
@@ -11,15 +14,15 @@
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-material-ui-form-validator": "^2.1.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "serve": "^11.3.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "REACT_APP_NODE_ENV=production react-scripts start",
-    "build": "REACT_APP_NODE_ENV=production react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

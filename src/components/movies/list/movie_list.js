@@ -261,7 +261,7 @@ function MoviesList() {
                             </Card>
                         </Grid>
                     ))}
-                    {items.length != 0 && 
+                    {items.length !== 0 && 
                     <div style={{ position: "relative", margin: "auto" }}>
                         {loggedIn && <Button variant="contained" color="primary">fetch More Movies (Not implemented)</Button>}
                     </div>

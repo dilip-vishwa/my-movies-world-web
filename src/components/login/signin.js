@@ -73,7 +73,7 @@ export default function SignIn() {
     fetch(`${endpoint.endpoint}/users/`, requestOptions)
         .then(response => response.json())
         .then(data => {
-          if(data['result'] == 'Success') {
+          if(data['result'] === 'Success') {
             history.push(`/movies`);
             window.location.reload(false);
           }

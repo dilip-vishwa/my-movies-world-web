@@ -97,7 +97,7 @@ function TopBar(props) {
     const [alertMessage, setAlertMessage] = useState("")
 
     let logout_login_button = <Link to="login" style={{ color: "#FFFFFF", textDecoration: "none", float: "right"}}>Login</Link>
-    if (props.loggedIn == "true") {
+    if (props.loggedIn === "true") {
         logout_login_button = <Link to="logout" style={{ color: "#FFFFFF", textDecoration: "none", float: "right"}}>Logout</Link>
     }
     return (
